@@ -2,1183 +2,1286 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Mangal InScript Typing Master</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hindi InScript Mangal Typing Master</title>
 
 <style>
 *{box-sizing:border-box}
 
 body{
-    margin:0;
-    background:#eef2f7;
-    color:#172033;
-    font-family:"Mangal","Nirmala UI",sans-serif;
+  margin:0;
+  background:#f4f6fb;
+  color:#172033;
+  font-family:Arial,"Noto Sans Devanagari",sans-serif;
 }
 
-header{
-    background:#172554;
-    color:white;
-    padding:18px;
-    text-align:center;
+.wrap{
+  max-width:1100px;
+  margin:auto;
+  padding:15px;
 }
 
-header h1{margin:0}
-header p{margin:5px 0;color:#dbeafe}
-
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:18px;
+.header{
+  background:#172a55;
+  color:white;
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:15px;
 }
 
-/* STATS */
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:10px;
+.header h1{
+  margin:0 0 7px;
+  font-size:26px;
 }
 
-.stat{
-    background:white;
-    padding:12px;
-    border-radius:10px;
-    text-align:center;
-    box-shadow:0 2px 7px #0002;
+.header p{
+  margin:0;
+  font-size:14px;
+  opacity:.9;
 }
 
-.stat span{
-    display:block;
-    font-size:22px;
-    font-weight:bold;
+.card{
+  background:white;
+  border:1px solid #dce2ec;
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:15px;
 }
 
-/* LESSON */
-
-.lesson{
-    background:white;
-    margin-top:15px;
-    padding:18px;
-    border-radius:12px;
+.controls{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr;
+  gap:10px;
 }
 
-.lesson-top{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
+label{
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:5px;
 }
 
-.badge{
-    background:#dbeafe;
-    color:#1d4ed8;
-    padding:5px 12px;
-    border-radius:20px;
-}
-
-/* INSTRUCTION */
-
-.instruction{
-    margin-top:15px;
-    padding:18px;
-    background:#eff6ff;
-    border:2px solid #93c5fd;
-    border-radius:12px;
-    text-align:center;
-}
-
-.instruction .char{
-    font-size:50px;
-    font-weight:bold;
-    color:#1d4ed8;
-}
-
-.instruction .key{
-    font-size:25px;
-    font-weight:bold;
-}
-
-.instruction .finger{
-    font-size:20px;
-    color:#15803d;
-}
-
-/* TARGET */
-
-.target{
-    margin-top:15px;
-    background:white;
-    border:2px solid #cbd5e1;
-    padding:20px;
-    min-height:120px;
-    border-radius:10px;
-    font-size:25px;
-    line-height:2;
-}
-
-.correct{color:green}
-.wrong{
-    color:red;
-    background:#fee2e2;
-}
-
-.current{
-    background:#fde68a;
-    border-radius:4px;
-}
-
-/* INPUT */
-
+select,
+input,
+button,
 textarea{
-    width:100%;
-    height:130px;
-    margin-top:15px;
-    resize:none;
-    border:3px solid #2563eb;
-    border-radius:10px;
-    padding:15px;
-    font-size:24px;
-    font-family:"Mangal","Nirmala UI",sans-serif;
-    outline:none;
-}
-
-/* BUTTON */
-
-.buttons{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:12px;
+  width:100%;
+  min-height:44px;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  padding:9px 11px;
+  font-size:15px;
+  background:white;
 }
 
 button{
-    border:0;
-    border-radius:8px;
-    padding:11px 18px;
-    font-size:16px;
-    color:white;
-    background:#2563eb;
-    cursor:pointer;
+  cursor:pointer;
+  font-weight:bold;
 }
 
-button:hover{opacity:.9}
-
-.green{background:#16a34a}
-.red{background:#dc2626}
-.gray{background:#475569}
-
-/* KEYBOARD */
-
-.keyboard-box{
-    margin-top:18px;
-    padding:18px;
-    background:#172033;
-    color:white;
-    border-radius:12px;
+.primary{
+  background:#2454c6;
+  color:white;
+  border-color:#2454c6;
 }
 
-.keyboard{
-    max-width:900px;
-    margin:auto;
+.stats{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:9px;
+  margin-top:12px;
 }
 
-.row{
-    display:flex;
-    justify-content:center;
-    margin:4px;
+.stat{
+  background:#f0f3f9;
+  border-radius:12px;
+  padding:10px;
+  text-align:center;
 }
 
-.key{
-    min-width:58px;
-    height:50px;
-    margin:2px;
-    padding:5px;
-    border-radius:6px;
-    background:#334155;
-    border:1px solid #64748b;
-    text-align:center;
-    font-size:18px;
-}
-
-.key small{
-    display:block;
-    font-size:11px;
-    color:#cbd5e1;
-}
-
-.key.active{
-    background:#f59e0b;
-    color:#111827;
-    transform:scale(1.08);
-    box-shadow:0 0 15px #f59e0b;
-}
-
-.key.active small{
-    color:#111827;
-}
-
-/* HAND GUIDE */
-
-.hand-guide{
-    margin-top:18px;
-    background:white;
-    border-radius:12px;
-    padding:18px;
-}
-
-.hands{
-    display:flex;
-    justify-content:center;
-    gap:80px;
-    font-size:45px;
-    margin:15px;
-}
-
-.hand-card{
-    text-align:center;
-}
-
-.left{color:#2563eb}
-.right{color:#dc2626}
-
-/* LEVELS */
-
-.level-box{
-    margin-top:18px;
-    background:white;
-    padding:18px;
-    border-radius:12px;
-}
-
-.level-grid{
-    display:grid;
-    grid-template-columns:repeat(10,1fr);
-    gap:6px;
-}
-
-.level{
-    padding:8px 2px;
-    text-align:center;
-    background:#e2e8f0;
-    border-radius:6px;
-    cursor:pointer;
-}
-
-.level.done{
-    background:#22c55e;
-    color:white;
-}
-
-.level.now{
-    background:#2563eb;
-    color:white;
-}
-
-.level.lock{
-    opacity:.4;
-    cursor:not-allowed;
+.stat b{
+  display:block;
+  font-size:21px;
+  margin-top:3px;
 }
 
 .progress{
-    height:12px;
-    background:#e5e7eb;
-    border-radius:10px;
-    margin-top:10px;
+  height:10px;
+  background:#e7ebf2;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:12px;
 }
 
 .progress-bar{
-    height:100%;
-    background:#2563eb;
-    width:1%;
-    border-radius:10px;
+  height:100%;
+  width:0;
+  background:#2454c6;
+  transition:.2s;
 }
 
-.tip{
-    margin-top:18px;
-    padding:15px;
-    background:#fff7ed;
-    border-left:5px solid #f97316;
-    border-radius:8px;
+.course{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
 }
 
-@media(max-width:700px){
-
-.stats{
-    grid-template-columns:repeat(2,1fr);
+.pill{
+  padding:7px 11px;
+  border-radius:20px;
+  background:#edf1f7;
+  font-size:13px;
+  font-weight:bold;
 }
 
-.level-grid{
-    grid-template-columns:repeat(5,1fr);
+.lesson-grid{
+  display:grid;
+  grid-template-columns:1fr 1.25fr;
+  gap:15px;
+}
+
+.target{
+  font-size:25px;
+  line-height:2;
+  min-height:180px;
+  border:1px solid #d7deea;
+  border-radius:13px;
+  padding:15px;
+  background:#fbfcff;
+  white-space:pre-wrap;
+}
+
+.target .current{
+  background:#ffe08a;
+  border-radius:5px;
+}
+
+.typing{
+  font-size:22px;
+  line-height:1.9;
+  min-height:180px;
+  resize:vertical;
+  font-family:"Noto Sans Devanagari",Mangal,Arial,sans-serif;
+}
+
+.help{
+  background:#f3f6fb;
+  border-radius:12px;
+  padding:12px;
+  margin-top:10px;
+}
+
+.help strong{
+  font-size:17px;
+}
+
+.small{
+  font-size:12px;
+  color:#667085;
+}
+
+.message{
+  min-height:24px;
+  margin-top:8px;
+  font-weight:bold;
+}
+
+.ok{
+  color:#087443;
+}
+
+.bad{
+  color:#b42318;
+}
+
+.keyboard{
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+  margin-top:10px;
 }
 
 .key{
-    min-width:32px;
-    height:45px;
-    font-size:13px;
+  min-width:43px;
+  padding:10px 7px;
+  text-align:center;
+  border:1px solid #cbd5e1;
+  border-radius:7px;
+  background:white;
+  font-weight:bold;
 }
 
-.target,textarea{
-    font-size:19px;
+.key.next{
+  background:#ffe08a;
+  border-color:#d39c00;
+  box-shadow:0 0 0 2px #ffd45a;
+}
+
+.key.space{
+  min-width:140px;
 }
 
 .hands{
-    gap:20px;
-    font-size:30px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
+
+.hand{
+  border:1px solid #dce2ec;
+  border-radius:12px;
+  padding:12px;
+  background:#fafbfe;
+}
+
+@media(max-width:800px){
+  .controls{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .lesson-grid{
+    grid-template-columns:1fr;
+  }
+
+  .stats{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media(max-width:480px){
+  .controls{
+    grid-template-columns:1fr;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hands{
+    grid-template-columns:1fr;
+  }
+
+  .target,
+  .typing{
+    font-size:19px;
+  }
+
+  .header h1{
+    font-size:21px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>⌨️ Mangal InScript Typing Master</h1>
-<p>Basic से Pro — 100 Level Hindi Typing Course</p>
+<div class="wrap">
+
+<!-- HEADER -->
+<header class="header">
+  <h1>⌨️ Hindi InScript / Mangal Typing Master</h1>
+  <p>
+    500 Levels • Basic → Intermediate → Advanced → Pro
+    • Lesson + Practice + Test
+  </p>
 </header>
 
-<div class="container">
+
+<!-- CONTROL PANEL -->
+<section class="card">
+
+  <div class="controls">
+
+    <div>
+      <label>Level</label>
+      <select id="level"></select>
+    </div>
+
+    <div>
+      <label>Mode</label>
+      <select id="mode">
+        <option value="lesson">Lesson + Practice</option>
+        <option value="test">Test</option>
+      </select>
+    </div>
+
+    <div>
+      <label>समय</label>
+      <select id="time">
+        <option value="120">2 मिनट</option>
+        <option value="60">1 मिनट</option>
+        <option value="180">3 मिनट</option>
+        <option value="300">5 मिनट</option>
+        <option value="custom">Custom</option>
+      </select>
+    </div>
+
+    <div id="customBox" style="display:none">
+      <label>Custom मिनट</label>
+      <input
+        id="customTime"
+        type="number"
+        min="1"
+        max="60"
+        value="2"
+      >
+    </div>
+
+  </div>
+
+  <button
+    class="primary"
+    id="start"
+    style="margin-top:10px"
+  >
+    ▶ शुरू करें
+  </button>
+
+  <div class="small" style="margin-top:8px">
+    Default समय 2 मिनट है। Custom में 1 से 60 मिनट तक अपना समय रख सकते हैं।
+  </div>
+
+</section>
+
 
 <!-- STATS -->
+<section class="card">
 
-<div class="stats">
+  <div class="course" id="course"></div>
 
-<div class="stat">
-Level
-<span id="level">1</span>
-</div>
+  <div class="stats">
 
-<div class="stat">
-Time
-<span><span id="time">60</span>s</span>
-</div>
+    <div class="stat">
+      Level
+      <b id="sLevel">1 / 500</b>
+    </div>
 
-<div class="stat">
-Speed
-<span><span id="wpm">0</span> WPM</span>
-</div>
+    <div class="stat">
+      समय
+      <b id="clock">02:00</b>
+    </div>
 
-<div class="stat">
-Accuracy
-<span><span id="accuracy">100</span>%</span>
-</div>
+    <div class="stat">
+      WPM
+      <b id="wpm">0</b>
+    </div>
 
-<div class="stat">
-Progress
-<span id="progress">1/100</span>
-</div>
+    <div class="stat">
+      Accuracy
+      <b id="accuracy">100%</b>
+    </div>
 
-</div>
+    <div class="stat">
+      गलतियाँ
+      <b id="errors">0</b>
+    </div>
+
+  </div>
+
+  <div class="progress">
+    <div class="progress-bar" id="progress"></div>
+  </div>
+
+</section>
 
 
 <!-- LESSON -->
+<section class="card">
 
-<div class="lesson">
+  <div class="lesson-grid">
 
-<div class="lesson-top">
+    <!-- LEFT -->
+    <div>
 
-<div>
-<h2 id="title">Level 1 — अक्षर पहचान</h2>
-<p id="description">एक-एक अक्षर सीखें</p>
-</div>
+      <h3>🎯 आज का Lesson</h3>
 
-<div class="badge" id="difficulty">Basic</div>
+      <div id="lessonText">
+        Level 1 से शुरुआत करें।
+      </div>
 
-</div>
+      <div class="help">
 
-<div class="progress">
-<div class="progress-bar" id="bar"></div>
-</div>
+        <strong id="finger">
+          👉 अगली key के लिए उंगली संकेत
+        </strong>
 
+        <div
+          id="instruction"
+          class="small"
+          style="margin-top:5px"
+        >
+          Keyboard पर अगली key देखें।
+        </div>
 
-<!-- FINGER INSTRUCTION -->
+      </div>
 
-<div class="instruction">
+      <h3>🖐️ Finger Placement</h3>
 
-<div>अगला अक्षर</div>
+      <div class="hands">
 
-<div class="char" id="nextChar">क</div>
+        <div class="hand">
+          <b>बायाँ हाथ</b>
+          <br><br>
+          छोटी → Q A Z
+          <br>
+          अनामिका → W S X
+          <br>
+          मध्यमा → E D C
+          <br>
+          तर्जनी → R F V T G B
+        </div>
 
-<div class="key">
-Key: <span id="nextKey">d</span>
-</div>
+        <div class="hand">
+          <b>दायाँ हाथ</b>
+          <br><br>
+          तर्जनी → Y H N U J M
+          <br>
+          मध्यमा → I K ,
+          <br>
+          अनामिका → O L .
+          <br>
+          छोटी → P ; /
+        </div>
 
-<div class="finger" id="finger">
-☝️ बायाँ मध्यमा
-</div>
+      </div>
 
-<div id="hand">
-👈 Left Hand
-</div>
-
-<p id="action">
-👉 पहले बायाँ हाथ रखें → बायाँ मध्यमा लगाएँ → D दबाएँ
-</p>
-
-</div>
-
-
-<!-- TARGET -->
-
-<div class="target" id="target"></div>
-
-<textarea
-id="input"
-placeholder="यहाँ Hindi InScript में टाइप करें..."
-spellcheck="false"
-autocomplete="off">
-</textarea>
-
-
-<div class="buttons">
-
-<button class="red" onclick="resetLesson()">
-↻ Reset
-</button>
-
-<button onclick="checkLesson()">
-✓ Check
-</button>
-
-<button class="green" onclick="nextLevel()">
-Next Level →
-</button>
-
-</div>
-
-</div>
+    </div>
 
 
-<!-- KEYBOARD -->
+    <!-- RIGHT -->
+    <div>
 
-<div class="keyboard-box">
+      <h3>⌨️ Live Keyboard</h3>
 
-<h2>⌨️ InScript Keyboard</h2>
+      <div
+        class="keyboard"
+        id="keyboard"
+      ></div>
 
-<p>जिस अक्षर की बारी है उसकी key पीली दिखाई जाएगी।</p>
+      <h3>अभ्यास पाठ</h3>
 
-<div class="keyboard" id="keyboard"></div>
+      <div
+        class="target"
+        id="target"
+      >
+        शुरू करने के बाद पाठ दिखाई देगा।
+      </div>
 
-</div>
+      <textarea
+        id="input"
+        class="typing"
+        spellcheck="false"
+        disabled
+        placeholder="यहाँ हिंदी टाइप करें..."
+      ></textarea>
 
+      <div
+        id="message"
+        class="message"
+      ></div>
 
-<!-- HAND -->
+    </div>
 
-<div class="hand-guide">
+  </div>
 
-<h2>🖐️ Finger Guide</h2>
-
-<div class="hands">
-
-<div class="hand-card left">
-🖐️
-<br>
-बायाँ हाथ
-</div>
-
-<div class="hand-card right">
-🖐️
-<br>
-दायाँ हाथ
-</div>
-
-</div>
-
-<p>
-<strong>नियम:</strong>
-उंगली को keyboard की सही position से हटाकर दूसरे हाथ की key पर न ले जाएँ।
-जिस key के लिए जो finger निर्धारित है उसी finger का अभ्यास करें।
-</p>
-
-</div>
+</section>
 
 
-<!-- LEVELS -->
+<!-- INFO -->
+<section class="card">
 
-<div class="level-box">
+  <h3>🇮🇳 Hindi InScript / Mangal</h3>
 
-<h2>🎯 100 Levels</h2>
+  <p>
+    <b>Mangal</b> केवल Hindi Unicode font है।
+    Hindi typing के लिए computer/mobile में
+    <b>Hindi InScript keyboard layout</b> चुनना जरूरी है।
+  </p>
 
-<div class="level-grid" id="levels"></div>
+  <p class="small">
+    यह course beginner से शुरू होकर अक्षर → मात्राएँ →
+    शब्द → वाक्य → advanced typing तक जाएगा।
+    कुल 500 levels हैं।
+  </p>
 
-</div>
-
-
-<div class="tip">
-
-<h3>📚 सीखने का तरीका</h3>
-
-<ul>
-<li>पहले अक्षर पहचानो।</li>
-<li>फिर स्क्रीन पर बताई गई finger लगाओ।</li>
-<li>फिर बताई गई key दबाओ।</li>
-<li>पहले Accuracy 90%+ करो।</li>
-<li>इसके बाद Speed बढ़ाओ।</li>
-<li>Level 1–20 Basic, 21–50 Intermediate, 51–75 Advanced और 76–100 Pro हैं।</li>
-</ul>
-
-</div>
+</section>
 
 </div>
 
 
 <script>
 
-/*
-==================================================
-HINDI INSCRIPT KEY MAP
-==================================================
-*/
+"use strict";
 
-const keyMap = {
 
-"ौ":{key:"q",finger:"बायाँ कनिष्ठा",hand:"👈 Left Hand"},
-"ै":{key:"w",finger:"बायाँ अनामिका",hand:"👈 Left Hand"},
-"ा":{key:"e",finger:"बायाँ मध्यमा",hand:"👈 Left Hand"},
-"ी":{key:"r",finger:"बायाँ तर्जनी",hand:"👈 Left Hand"},
-"ू":{key:"t",finger:"बायाँ तर्जनी",hand:"👈 Left Hand"},
+/* =========================================================
+   STANDARD IN SCRIPT KEY GUIDANCE
+   ========================================================= */
 
-"ब":{key:"y",finger:"बायाँ तर्जनी",hand:"👈 Left Hand"},
-"ह":{key:"u",finger:"दायाँ तर्जनी",hand:"👉 Right Hand"},
-"ग":{key:"i",finger:"दायाँ मध्यमा",hand:"👉 Right Hand"},
-"द":{key:"o",finger:"दायाँ अनामिका",hand:"👉 Right Hand"},
-"ज":{key:"p",finger:"दायाँ कनिष्ठा",hand:"👉 Right Hand"},
+const KEYMAP = {
 
-"ो":{key:"s",finger:"बायाँ अनामिका",hand:"👈 Left Hand"},
-"े":{key:"d",finger:"बायाँ मध्यमा",hand:"👈 Left Hand"},
-"्":{key:"f",finger:"बायाँ तर्जनी",hand:"👈 Left Hand"},
-"ि":{key:"g",finger:"बायाँ तर्जनी",hand:"👈 Left Hand"},
-"ु":{key:"h",finger:"दायाँ तर्जनी",hand:"👉 Right Hand"},
+  "ौ":"q",
+  "ै":"w",
+  "ा":"e",
+  "ी":"r",
+  "ू":"t",
+  "ब":"y",
+  "ह":"u",
+  "ग":"i",
+  "द":"o",
+  "ज":"p",
+  "ड":"[",
+  "़":"]",
 
-"प":{key:"j",finger:"दायाँ तर्जनी",hand:"👉 Right Hand"},
-"र":{key:"k",finger:"दायाँ मध्यमा",hand:"👉 Right Hand"},
-"क":{key:"l",finger:"दायाँ अनामिका",hand:"👉 Right Hand"},
-"त":{key:";",finger:"दायाँ कनिष्ठा",hand:"👉 Right Hand"},
-"च":{key:"'",finger:"दायाँ कनिष्ठा",hand:"👉 Right Hand"},
+  "ो":"a",
+  "े":"s",
+  "्":"d",
+  "ि":"f",
+  "ु":"g",
+  "प":"h",
+  "र":"j",
+  "क":"k",
+  "त":"l",
 
-"ं":{key:"x",finger:"बायाँ अनामिका",hand:"👈 Left Hand"},
-"म":{key:"c",finger:"बायाँ मध्यमा",hand:"👈 Left Hand"},
-"न":{key:"v",finger:"बायाँ तर्जनी",hand:"👈 Left Hand"},
-"व":{key:"b",finger:"बायाँ तर्जनी",hand:"👈 Left Hand"},
-"ल":{key:"n",finger:"दायाँ तर्जनी",hand:"👉 Right Hand"},
-"स":{key:"m",finger:"दायाँ मध्यमा",hand:"👉 Right Hand"},
-"य":{key:",",finger:"दायाँ अनामिका",hand:"👉 Right Hand"}
+  "म":"c",
+  "ं":"x",
+  "न":"v",
+  "व":"b",
+  "ल":"n",
+  "स":"m",
+  "य":",",
+  "ष":".",
+  "श":"/",
+
+  "अ":"Shift+k",
+  "आ":"Shift+e",
+  "इ":"Shift+f",
+  "ई":"Shift+r",
+  "उ":"Shift+g",
+  "ऊ":"Shift+t",
+  "ए":"Shift+s",
+  "ऐ":"Shift+w",
+  "ओ":"Shift+a",
+  "औ":"Shift+q",
+
+  "क":"k",
+  "ख":"Shift+k",
+  "ग":"i",
+  "घ":"Shift+i",
+  "ङ":"Shift+u",
+
+  "च":"j",
+  "छ":"Shift+j",
+  "ज":"p",
+  "झ":"Shift+p",
+  "ञ":"Shift+n",
+
+  "ट":"Shift+;",
+  "ठ":"Shift+q",
+  "ड":"[",
+  "ढ":"Shift+[",
+  "ण":"Shift+]",
+
+  "त":"l",
+  "थ":"Shift+l",
+  "द":"o",
+  "ध":"Shift+o",
+  "न":"v",
+
+  "प":"h",
+  "फ":"Shift+h",
+  "ब":"y",
+  "भ":"Shift+y",
+  "म":"c",
+
+  "य":",",
+  "र":"j",
+  "ल":"n",
+  "व":"b",
+
+  "श":"/",
+  "ष":".",
+  "स":"m",
+  "ह":"u",
+
+  "०":"`",
+  "१":"1",
+  "२":"2",
+  "३":"3",
+  "४":"4",
+  "५":"5",
+  "६":"6",
+  "७":"7",
+  "८":"8",
+  "९":"9",
+
+  " ":"Space"
 
 };
 
 
-/*
-==================================================
-100 LEVELS
-==================================================
-*/
+/* =========================================================
+   FINGER GUIDE
+   ========================================================= */
 
-const levels=[];
+const FINGER = {
 
-const basic=[
-"क","ख","ग","घ","च",
-"त","द","न","प","ब",
-"म","य","र","ल","व",
-"स","ह","ज","ट","ड"
-];
+  q:"बायाँ हाथ → छोटी उंगली",
+  w:"बायाँ हाथ → अनामिका",
+  e:"बायाँ हाथ → मध्यमा",
+  r:"बायाँ हाथ → तर्जनी",
+  t:"बायाँ हाथ → तर्जनी",
 
-basic.forEach((x,i)=>{
+  y:"दायाँ हाथ → तर्जनी",
+  u:"दायाँ हाथ → तर्जनी",
+  i:"दायाँ हाथ → मध्यमा",
+  o:"दायाँ हाथ → अनामिका",
+  p:"दायाँ हाथ → छोटी उंगली",
 
-levels.push({
-title:"Level "+(i+1)+" — Basic",
-description:"एक अक्षर पर finger practice",
-difficulty:"Basic",
-text:x.repeat(8)+" "
-});
+  a:"बायाँ हाथ → छोटी उंगली",
+  s:"बायाँ हाथ → अनामिका",
+  d:"बायाँ हाथ → मध्यमा",
+  f:"बायाँ हाथ → तर्जनी",
+  g:"बायाँ हाथ → तर्जनी",
 
-});
+  h:"दायाँ हाथ → तर्जनी",
+  j:"दायाँ हाथ → तर्जनी",
+  k:"दायाँ हाथ → मध्यमा",
+  l:"दायाँ हाथ → अनामिका",
 
+  z:"बायाँ हाथ → छोटी उंगली",
+  x:"बायाँ हाथ → अनामिका",
+  c:"बायाँ हाथ → मध्यमा",
+  v:"बायाँ हाथ → तर्जनी",
+  b:"बायाँ हाथ → तर्जनी",
 
-const words=[
-"कमल कमल कमल",
-"मंगल मंगल मंगल",
-"भारत भारत भारत",
-"हिंदी हिंदी हिंदी",
-"नाम नाम नाम",
-"मन मन मन",
-"कल कल कल",
-"नम नम नम",
-"कर कर कर",
-"राम राम राम",
-"समय समय समय",
-"काम काम काम",
-"नियम नियम नियम",
-"टाइप टाइप टाइप",
-"अभ्यास अभ्यास",
-"सफलता सफलता",
-"प्रयास प्रयास",
-"पढ़ाई पढ़ाई",
-"लक्ष्य लक्ष्य",
-"जीत जीत"
-];
+  n:"दायाँ हाथ → तर्जनी",
+  m:"दायाँ हाथ → तर्जनी",
 
-words.forEach((x,i)=>{
+  ",":"दायाँ हाथ → तर्जनी",
+  ".":"दायाँ हाथ → मध्यमा",
+  "/":"दायाँ हाथ → अनामिका",
 
-levels.push({
-title:"Level "+(i+21)+" — Word",
-description:"शब्द typing practice",
-difficulty:"Basic+",
-text:x
-});
+  " ":"दोनों हाथों में अंगूठा"
 
-});
+};
 
 
-const sentences=[
-"हिंदी टाइपिंग का अभ्यास करें।",
-"नियमित अभ्यास सफलता देता है।",
-"समय का सही उपयोग करें।",
-"हर दिन typing का अभ्यास करें।",
-"सटीकता बहुत महत्वपूर्ण है।",
-"पहले accuracy फिर speed बढ़ाएं।",
-"मंगल font में typing करें।",
-"InScript keyboard सीखें।",
-"बिना keyboard देखे typing करें।",
-"अपनी finger position सही रखें।",
-"गलतियों को कम करने का प्रयास करें।",
-"लगातार अभ्यास से speed बढ़ती है।",
-"कंप्यूटर का नियमित अभ्यास करें।",
-"सरकारी परीक्षा की तैयारी करें।",
-"हर दिन एक घंटा typing करें।",
-"धैर्य और मेहनत से सफलता मिलती है।",
-"अपना लक्ष्य निर्धारित करें।",
-"समय सीमा में typing करना सीखें।",
-"अच्छी accuracy बनाए रखें।",
-"धीरे धीरे speed बढ़ाएं।"
-];
+/* =========================================================
+   DOM
+   ========================================================= */
 
-sentences.forEach((x,i)=>{
+const levelEl=document.getElementById("level");
+const modeEl=document.getElementById("mode");
+const timeEl=document.getElementById("time");
+const customBox=document.getElementById("customBox");
+const customTime=document.getElementById("customTime");
 
-levels.push({
-title:"Level "+(i+41)+" — Sentence",
-description:"Sentence typing",
-difficulty:"Intermediate",
-text:x
-});
+const startBtn=document.getElementById("start");
 
-});
+const clock=document.getElementById("clock");
+const wpmEl=document.getElementById("wpm");
+const accuracyEl=document.getElementById("accuracy");
+const errorsEl=document.getElementById("errors");
+const progressEl=document.getElementById("progress");
 
-
-const advanced=[
-"उत्तर प्रदेश पुलिस भर्ती परीक्षा की तैयारी के लिए निरंतर अभ्यास आवश्यक है।",
-"हिंदी इनस्क्रिप्ट keyboard सीखने के लिए रोज अभ्यास करना चाहिए।",
-"टाइपिंग परीक्षा में गति के साथ सटीकता पर भी ध्यान देना चाहिए।",
-"बिना keyboard देखे लगातार typing करने का अभ्यास करें।",
-"सरकारी नौकरी की तैयारी में computer knowledge महत्वपूर्ण है।",
-"अपनी typing speed और accuracy को प्रत्येक सप्ताह check करें।",
-"कठिन हिंदी शब्दों को बार बार टाइप करके अभ्यास करें।",
-"समय सीमा के अंदर अधिक से अधिक सही शब्द टाइप करें।",
-"एक अच्छा typist keyboard की keys को muscle memory से पहचानता है।",
-"अनुशासन और नियमित अभ्यास से typing skill मजबूत होती है।",
-"गलतियों को पहचानकर उन्हें दोबारा न दोहराएं।",
-"प्रतिदिन अलग paragraph टाइप करके अपनी क्षमता बढ़ाएं。",
-"typing करते समय हाथों की position सही रखना आवश्यक है।",
-"accuracy अच्छी होने के बाद धीरे धीरे speed बढ़ाएं।",
-"computer based examination में typing महत्वपूर्ण हो सकती है।"
-];
-
-advanced.forEach((x,i)=>{
-
-levels.push({
-title:"Level "+(i+61)+" — Advanced",
-description:"Exam style passage",
-difficulty:"Advanced",
-text:x
-});
-
-});
-
-
-const pro=[
-"उत्तर प्रदेश पुलिस भर्ती परीक्षा के लिए हिंदी typing का नियमित अभ्यास करें।",
-"एक professional typist तेज typing के साथ accuracy भी बनाए रखता है।",
-"परीक्षा जैसी स्थिति में timer लगाकर mock typing test का अभ्यास करें।",
-"हिंदी typing में मात्राओं और संयुक्त अक्षरों का विशेष अभ्यास करें।",
-"हर दिन अलग अलग passages टाइप करके अपनी typing क्षमता बढ़ाएं।",
-"keyboard की प्रत्येक key को उंगलियों की memory से पहचानना सीखें।",
-"गलतियों की संख्या कम करके अपनी typing accuracy को बेहतर बनाएं।",
-"एक disciplined student अपने लक्ष्य के अनुसार daily practice करता है।",
-"बिना keyboard देखे typing करने की आदत आपकी skill को बेहतर बनाती है।",
-"typing speed बढ़ाने के लिए accuracy को कभी भी अनदेखा नहीं करना चाहिए।",
-"कठिन शब्दों का अलग अभ्यास करने से finger coordination बेहतर होता है।",
-"अपने typing performance का रिकॉर्ड रखें और improvement देखें।",
-"समय सीमा में सही और लगातार typing करना सीखना professional skill है।",
-"अब आपका लक्ष्य तेज और सटीक हिंदी typing करना होना चाहिए।",
-"नियमित अभ्यास के द्वारा आप अपने typing लक्ष्य को प्राप्त कर सकते हैं।"
-];
-
-pro.forEach((x,i)=>{
-
-levels.push({
-title:"Level "+(i+86)+" — Pro",
-description:"Professional Hindi typing",
-difficulty:"Pro",
-text:x
-});
-
-});
-
-
-/*
-==================================================
-VARIABLES
-==================================================
-*/
-
-let current=1;
-let time=60;
-let timer=null;
-let started=false;
-
-let completed=
-JSON.parse(localStorage.getItem("mangalTypingDone")||"[]");
-
+const target=document.getElementById("target");
 const input=document.getElementById("input");
 
+const lessonText=document.getElementById("lessonText");
+const finger=document.getElementById("finger");
+const instruction=document.getElementById("instruction");
+const keyboard=document.getElementById("keyboard");
+const message=document.getElementById("message");
+const course=document.getElementById("course");
+const sLevel=document.getElementById("sLevel");
 
-/*
-==================================================
-LOAD
-==================================================
-*/
 
-function load(){
+/* =========================================================
+   SAVED PROGRESS
+   ========================================================= */
 
-clearInterval(timer);
+let unlocked=
+  Number(localStorage.getItem("HindiTypingUnlocked") || 1);
 
-started=false;
-time=60;
+let completed=
+  JSON.parse(
+    localStorage.getItem("HindiTypingCompleted") || "[]"
+  );
 
-document.getElementById("time").innerText=60;
-document.getElementById("wpm").innerText=0;
-document.getElementById("accuracy").innerText=100;
+unlocked=Math.max(1,Math.min(500,unlocked));
 
-input.value="";
-input.disabled=false;
 
-const lesson=levels[current-1];
+/* =========================================================
+   COURSE GROUPS
+   ========================================================= */
 
-document.getElementById("level").innerText=current;
-document.getElementById("progress").innerText=current+"/100";
-document.getElementById("title").innerText=lesson.title;
-document.getElementById("description").innerText=lesson.description;
-document.getElementById("difficulty").innerText=lesson.difficulty;
+const groups=[
+  ["Basic",1,100],
+  ["Matra & Vowel",101,200],
+  ["Words",201,300],
+  ["Sentences",301,400],
+  ["Advanced / Pro",401,500]
+];
 
-document.getElementById("bar").style.width=
-(current)+"%";
 
-renderTarget();
-renderInstruction();
-renderLevels();
+groups.forEach(group=>{
 
-}
+  const span=document.createElement("span");
 
+  span.className="pill";
 
-/*
-==================================================
-TARGET
-==================================================
-*/
+  span.textContent=
+    group[0]+" "+group[1]+"–"+group[2];
 
-function renderTarget(){
-
-const target=levels[current-1].text;
-const typed=input.value;
-
-let html="";
-
-for(let i=0;i<target.length;i++){
-
-let cls="";
-
-if(i<typed.length){
-
-cls=typed[i]===target[i]
-?"correct"
-:"wrong";
-
-}
-
-if(i===typed.length)
-cls+=" current";
-
-html+=
-`<span class="${cls}">${escapeHTML(target[i])}</span>`;
-
-}
-
-document.getElementById("target").innerHTML=html;
-
-}
-
-
-/*
-==================================================
-NEXT KEY + FINGER
-==================================================
-*/
-
-function renderInstruction(){
-
-const target=levels[current-1].text;
-const pos=input.value.length;
-
-const char=target[pos];
-
-if(!char){
-
-document.getElementById("nextChar").innerText="✓";
-document.getElementById("nextKey").innerText="-";
-document.getElementById("finger").innerText="Level Complete";
-document.getElementById("hand").innerText="🎉";
-document.getElementById("action").innerText=
-"बहुत बढ़िया! Check दबाएँ।";
-
-highlightKey("");
-
-return;
-}
-
-
-/*
-SPACE
-*/
-
-if(char===" "){
-
-document.getElementById("nextChar").innerText="Space";
-document.getElementById("nextKey").innerText="SPACE";
-document.getElementById("finger").innerText=
-"दोनों अंगूठे";
-
-document.getElementById("hand").innerText=
-"🖐️ Both Hands";
-
-document.getElementById("action").innerText=
-"👉 Spacebar को अंगूठे से दबाएँ।";
-
-highlightKey("SPACE");
-
-return;
-
-}
-
-
-const info=keyMap[char];
-
-if(!info){
-
-document.getElementById("nextChar").innerText=char;
-document.getElementById("nextKey").innerText="Mapping";
-document.getElementById("finger").innerText=
-"इस अक्षर की mapping नीचे देखें";
-
-document.getElementById("hand").innerText="⌨️";
-document.getElementById("action").innerText=
-"अक्षर के लिए InScript key इस्तेमाल करें";
-
-return;
-}
-
-document.getElementById("nextChar").innerText=char;
-document.getElementById("nextKey").innerText=info.key.toUpperCase();
-document.getElementById("finger").innerText=
-"☝️ "+info.finger;
-document.getElementById("hand").innerText=info.hand;
-
-document.getElementById("action").innerText=
-"👉 "+info.hand+
-" → "+info.finger+
-" → "+info.key.toUpperCase()+" दबाएँ";
-
-highlightKey(info.key);
-
-}
-
-
-/*
-==================================================
-TIMER
-==================================================
-*/
-
-function startTimer(){
-
-if(started)return;
-
-started=true;
-
-timer=setInterval(()=>{
-
-time--;
-
-document.getElementById("time").innerText=time;
-
-stats();
-
-if(time<=0){
-
-clearInterval(timer);
-input.disabled=true;
-
-checkLesson();
-
-}
-
-},1000);
-
-}
-
-
-/*
-==================================================
-STATS
-==================================================
-*/
-
-function stats(){
-
-const typed=input.value;
-const target=levels[current-1].text;
-
-let correct=0;
-
-for(let i=0;i<typed.length;i++){
-
-if(typed[i]===target[i])
-correct++;
-
-}
-
-let accuracy=
-typed.length
-?Math.round(correct/typed.length*100)
-:100;
-
-document.getElementById("accuracy").innerText=accuracy;
-
-let elapsed=60-time;
-
-if(elapsed>0){
-
-let wpm=Math.round(
-(typed.length/5)/(elapsed/60)
-);
-
-document.getElementById("wpm").innerText=wpm;
-
-}
-
-}
-
-
-/*
-==================================================
-INPUT
-==================================================
-*/
-
-input.addEventListener("input",()=>{
-
-if(!started)
-startTimer();
-
-stats();
-renderTarget();
-renderInstruction();
+  course.appendChild(span);
 
 });
 
 
-/*
-==================================================
-CHECK
-==================================================
-*/
+/* =========================================================
+   LEVEL SELECT
+   ========================================================= */
 
-function checkLesson(){
+function buildLevels(){
 
-stats();
+  levelEl.innerHTML="";
 
-let accuracy=
-parseInt(document.getElementById("accuracy").innerText);
+  for(let i=1;i<=500;i++){
 
-let wpm=
-parseInt(document.getElementById("wpm").innerText);
+    const option=document.createElement("option");
 
-if(accuracy>=90){
+    option.value=i;
 
-if(!completed.includes(current)){
+    option.textContent=
+      "Level "+i+
+      (i>unlocked ? " 🔒" : "");
 
-completed.push(current);
+    option.disabled=i>unlocked;
 
-localStorage.setItem(
-"mangalTypingDone",
-JSON.stringify(completed)
-);
+    levelEl.appendChild(option);
 
-}
+  }
 
-alert(
-"🎉 Level Complete!\n\n"+
-"Speed: "+wpm+" WPM\n"+
-"Accuracy: "+accuracy+"%"
-);
+  levelEl.value=unlocked;
 
-renderLevels();
-
-}else{
-
-alert(
-"अभी Accuracy "+accuracy+"% है।\n\n"+
-"कम से कम 90% Accuracy करें।"
-);
-
-}
+  sLevel.textContent=
+    unlocked+" / 500";
 
 }
 
 
-/*
-==================================================
-NEXT
-==================================================
-*/
-
-function nextLevel(){
-
-if(current>=100){
-
-alert("🏆 आपने Mangal InScript के सभी 100 Levels पूरे कर लिए!");
-return;
-
-}
-
-if(!completed.includes(current)){
-
-alert(
-"पहले इस Level को 90% या उससे अधिक Accuracy से पूरा करें।"
-);
-
-return;
-
-}
-
-current++;
-
-load();
-
-}
+buildLevels();
 
 
-/*
-==================================================
-RESET
-==================================================
-*/
+/* =========================================================
+   PRACTICE CONTENT
+   ========================================================= */
 
-function resetLesson(){
+const basicLetters=[
+  "कखगघङ",
+  "चछजझञ",
+  "टठडढण",
+  "तथदधन",
+  "पफबभम",
+  "यरलव",
+  "शषसह",
+  "कमलतनरप",
+  "जलवनमन",
+  "करतबगह"
+];
 
-load();
+const vowels=[
+  "अआइईउऊएऐओऔ",
+  "ा ि ी ु ू े ै ो ौ",
+  "ं ः ्"
+];
 
-input.focus();
+const words=[
+  "कमल कलम",
+  "भारत हिंदी",
+  "राम घर",
+  "जल वन फल",
+  "कर्म धर्म",
+  "शक्ति भक्ति",
+  "प्रश्न उत्तर",
+  "अभ्यास परीक्षा",
+  "सरकारी नौकरी",
+  "हिंदी टाइपिंग"
+];
 
-}
+const sentences=[
+  "नियमित अभ्यास से typing की गति बढ़ती है",
+  "पहले सही typing सीखें फिर speed बढ़ाएँ",
+  "हिंदी InScript keyboard का नियमित अभ्यास करें",
+  "सरकारी परीक्षा के लिए accuracy बहुत जरूरी है"
+];
 
-
-/*
-==================================================
-LEVEL BUTTONS
-==================================================
-*/
-
-function renderLevels(){
-
-const box=document.getElementById("levels");
-
-box.innerHTML="";
-
-for(let i=1;i<=100;i++){
-
-let div=document.createElement("div");
-
-div.className="level";
-
-div.innerText=i;
-
-if(completed.includes(i))
-div.classList.add("done");
-
-if(i===current)
-div.classList.add("now");
-
-if(i>1 && !completed.includes(i-1))
-div.classList.add("lock");
-
-div.onclick=()=>{
-
-if(i===1 || completed.includes(i-1)){
-
-current=i;
-load();
-
-}
-
-};
-
-box.appendChild(div);
-
-}
-
-}
-
-
-/*
-==================================================
-KEYBOARD
-==================================================
-*/
-
-const keyboardRows=[
-
-[
-["q","ौ"],["w","ै"],["e","ा"],["r","ी"],["t","ू"],
-["y","ब"],["u","ह"],["i","ग"],["o","द"],["p","ज"]
-],
-
-[
-["a","ो"],["s","े"],["d","्"],["f","ि"],["g","ु"],
-["h","प"],["j","र"],["k","क"],["l","त"],[";","च"]
-],
-
-[
-["z","ॉ"],["x","ं"],["c","म"],["v","न"],["b","व"],
-["n","ल"],["m","स"],[",","य"]
-]
-
+const advanced=[
+  "नियमित अभ्यास और सही finger placement से हिंदी typing में सुधार होता है",
+  "परीक्षा में speed के साथ accuracy बनाए रखना भी जरूरी है"
 ];
 
 
-function createKeyboard(){
+function makeText(level){
 
-const box=document.getElementById("keyboard");
+  let text="";
 
-keyboardRows.forEach(row=>{
+  if(level<=100){
 
-const rowDiv=document.createElement("div");
+    text=basicLetters[(level-1)%basicLetters.length];
 
-rowDiv.className="row";
+    const repeat=
+      Math.min(
+        10,
+        2+Math.floor(level/15)
+      );
 
-row.forEach(item=>{
+    text=Array(repeat)
+      .fill(text)
+      .join(" ");
 
-const div=document.createElement("div");
+  }
 
-div.className="key";
+  else if(level<=200){
 
-div.dataset.key=item[0];
+    text=
+      vowels[(level-101)%vowels.length];
 
-div.innerHTML=
-item[0].toU
+    text=Array(
+      3+Math.floor((level-101)/30)
+    )
+    .fill(text)
+    .join(" ");
+
+  }
+
+  else if(level<=300){
+
+    text=
+      words[(level-201)%words.length];
+
+    text=Array(4)
+      .fill(text)
+      .join(" ");
+
+  }
+
+  else if(level<=400){
+
+    text=
+      sentences[(level-301)%sentences.length];
+
+    text=Array(3)
+      .fill(text)
+      .join("। ");
+
+  }
+
+  else{
+
+    text=
+      advanced[(level-401)%advanced.length];
+
+    text=Array(3)
+      .fill(text)
+      .join("। ");
+
+  }
+
+  return text;
+
+}
+
+
+/* =========================================================
+   KEYBOARD
+   ========================================================= */
+
+const keys=[
+  "q","w","e","r","t",
+  "y","u","i","o","p",
+  "[","]",
+
+  "a","s","d","f","g",
+  "h","j","k","l",
+
+  "z","x","c","v","b",
+  "n","m",",",".","/","Space"
+];
+
+
+keys.forEach(key=>{
+
+  const div=document.createElement("div");
+
+  div.className="key";
+
+  if(key==="Space"){
+    div.classList.add("space");
+    div.textContent="SPACE";
+  }
+  else{
+    div.textContent=key.toUpperCase();
+  }
+
+  div.dataset.key=key;
+
+  keyboard.appendChild(div);
+
+});
+
+
+/* =========================================================
+   CURRENT TEST
+   ========================================================= */
+
+let text="";
+let timer=null;
+let running=false;
+let seconds=120;
+let startTime=0;
+let wrong=0;
+
+
+/* =========================================================
+   TIME
+   ========================================================= */
+
+function getTime(){
+
+  if(timeEl.value==="custom"){
+
+    let value=
+      parseInt(customTime.value,10);
+
+    if(!Number.isFinite(value)){
+      value=2;
+    }
+
+    value=
+      Math.max(1,Math.min(60,value));
+
+    return value*60;
+
+  }
+
+  return Number(timeEl.value);
+
+}
+
+
+function formatTime(sec){
+
+  sec=Math.max(0,Math.ceil(sec));
+
+  const min=
+    Math.floor(sec/60);
+
+  const secondsPart=
+    sec%60;
+
+  return(
+    String(min).padStart(2,"0")+
+    ":"+
+    String(secondsPart).padStart(2,"0")
+  );
+
+}
+
+
+/* =========================================================
+   TARGET DISPLAY
+   ========================================================= */
+
+function showTarget(position=0){
+
+  target.innerHTML="";
+
+  [...text].forEach((char,index)=>{
+
+    const span=
+      document.createElement("span");
+
+    span.textContent=char;
+
+    if(index===position){
+      span.className="current";
+    }
+
+    target.appendChild(span);
+
+  });
+
+  highlightNext(text[position] || "");
+
+}
+
+
+/* =========================================================
+   LIVE KEY HIGHLIGHT
+   ========================================================= */
+
+function highlightNext(char){
+
+  document
+    .querySelectorAll(".key")
+    .forEach(key=>{
+      key.classList.remove("next");
+    });
+
+  const mapped=
+    KEYMAP[char];
+
+  if(!mapped){
+    finger.textContent=
+      "👉 अगला अक्षर keyboard mapping में नहीं है";
+
+    instruction.textContent=
+      "अपना Hindi InScript keyboard layout check करें।";
+
+    return;
+  }
+
+
+  let actualKey=
+    mapped;
+
+  if(mapped.startsWith("Shift+")){
+    actualKey=
+      mapped.split("+")[1].toLowerCase();
+  }
+
+  const keyElement=
+    [...document.querySelectorAll(".key")]
+    .find(k=>k.dataset.key===actualKey);
+
+  if(keyElement){
+    keyElement.classList.add("next");
+  }
+
+
+  finger.textContent=
+    (mapped.startsWith("Shift+")
+      ? "⇧ Shift + "
+      : "")+
+    (
+      FINGER[actualKey] ||
+      "उंगली संकेत"
+    );
+
+
+  instruction.textContent=
+    char===" "
+      ? "Space दबाएँ।"
+      : `अगला अक्षर “${char}” है — ${mapped} key दबाएँ।`;
+
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+function updateStats(){
+
+  const typed=
+    input.value;
+
+  const elapsed=
+    Math.max(
+      0.1,
+      (Date.now()-startTime)/1000
+    );
+
+  let correct=0;
+
+  for(let i=0;i<typed.length;i++){
+
+    if(typed[i]===text[i]){
+      correct++;
+    }
+
+  }
+
+
+  const accuracy=
+    typed.length
+      ? Math.round(
+          correct/typed.length*100
+        )
+      : 100;
+
+
+  const wpm=
+    Math.round(
+      (correct/5)/
+      (elapsed/60)
+    );
+
+
+  wpmEl.textContent=
+    Number.isFinite(wpm)
+      ? Math.max(0,wpm)
+      : 0;
+
+  accuracyEl.textContent=
+    accuracy+"%";
+
+  errorsEl.textContent=
+    wrong;
+
+  progressEl.style.width=
+    text.length
+      ? Math.min(
+          100,
+          typed.length/text.length*100
+        )+"%"
+      : "0%";
+
+  return{
+    accuracy,
+    wpm,
+    correct
+  };
+
+}
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+function startTest(){
+
+  clearInterval(timer);
+
+  const level=
+    Number(levelEl.value);
+
+  seconds=
+    getTime();
+
+  text=
+    makeText(level);
+
+  wrong=0;
+
+  running=true;
+
+  startTime=Date.now();
+
+  input.disabled=false;
+  input.value="";
+
+  message.className="message";
+  message.textContent=
+    "⌨️ टाइप करना शुरू करें…";
+
+  clock.textContent=
+    formatTime(seconds);
+
+  sLevel.textContent=
+    level+" / 500";
+
+  showTarget(0);
+
+  updateStats();
+
+  input.focus();
+
+
+  timer=
+    setInterval(()=>{
+
+      seconds--;
+
+      clock.textContent=
+        formatTime(seconds);
+
+      updateStats();
+
+      if(seconds<=0){
+        finishTest();
+      }
+
+    },1000);
+
+}
+
+
+/* =========================================================
+   FINISH
+   ========================================================= */
+
+function finishTest(){
+
+  if(!running)return;
+
+  running=false;
+
+  clearInterval(timer);
+
+  timer=null;
+
+  input.disabled=true;
+
+  const result=
+    updateStats();
+
+  const level=
+    Number(levelEl.value);
+
+
+  let passed=false;
+
+  if(modeEl.value==="lesson"){
+
+    passed=
+      result.accuracy>=90 &&
+      input.value.length>=30;
+
+  }
+  else{
+
+    passed=
+      result.accuracy>=85;
+
+  }
+
+
+  if(passed){
+
+    if(!completed.includes(level)){
+      completed.push(level);
+    }
+
+
+    if(
+      level===unlocked &&
+      unlocked<500
+    ){
+      unlocked++;
+    }
+
+
+    localStorage.setItem(
+      "HindiTypingUnlocked",
+      unlocked
+    );
+
+    localStorage.setItem(
+      "HindiTypingCompleted",
+      JSON.stringify(completed)
+    );
+
+
+    message.className=
+      "message ok";
+
+    message.textContent=
+      level<500
+        ? `✅ Level ${level} पूरा! Level ${level+1} unlock हो गया।`
+        : "🎉 शानदार! आपने सभी 500 Levels पूरे कर लिए!";
+
+    bui
