@@ -1284,4 +1284,241 @@ function finishTest(){
         ? `✅ Level ${level} पूरा! Level ${level+1} unlock हो गया।`
         : "🎉 शानदार! आपने सभी 500 Levels पूरे कर लिए!";
 
-    bui
+    buildLevels();
+
+  }
+  else{
+
+    message.className=
+      "message bad";
+
+    message.textContent=
+      `❌ Level ${level} अभी पूरा नहीं हुआ। Accuracy ${result.accuracy}% रही। फिर से प्रयास करें।`;
+
+  }
+
+}
+
+
+/* =========================================================
+   PREVIEW
+   ========================================================= */
+
+function preview(){
+
+  const level=
+    Number(levelEl.value);
+
+  text=
+    makeText(level);
+
+  showTarget(0);
+
+  input.value="";
+
+  progressEl.style.width="0%";
+
+  wpmEl.textContent="0";
+
+  accuracyEl.textContent="100%";
+
+  errorsEl.textContent="0";
+
+  clock.textContent=
+    formatTime(getTime());
+
+
+  if(level<=100){
+
+    lessonText.textContent=
+      "Basic: एक-एक अक्षर और keyboard placement सीखें।";
+
+  }
+  else if(level<=200){
+
+    lessonText.textContent=
+      "Intermediate: स्वर और मात्राओं का अभ्यास करें।";
+
+  }
+  else if(level<=300){
+
+    lessonText.textContent=
+      "Words: शब्दों की speed और accuracy बढ़ाएँ।";
+
+  }
+  else if(level<=400){
+
+    lessonText.textContent=
+      "Sentences: लगातार वाक्य typing का अभ्यास करें।";
+
+  }
+  else{
+
+    lessonText.textContent=
+      "Advanced / Pro: परीक्षा-जैसी लंबी typing का अभ्यास करें।";
+
+  }
+
+}
+
+
+/* =========================================================
+   EVENTS
+   ========================================================= */
+
+startBtn.addEventListener(
+  "click",
+  startTest
+);
+
+
+levelEl.addEventListener(
+  "change",
+  preview
+);
+
+
+modeEl.addEventListener(
+  "change",
+  preview
+);
+
+
+timeEl.addEventListener(
+  "change",
+  ()=>{
+
+    customBox.style.display=
+      timeEl.value==="custom"
+        ? "block"
+        : "none";
+
+    if(!running){
+      preview();
+    }
+
+  }
+);
+
+
+customTime.addEventListener(
+  "input",
+  ()=>{
+    if(!running){
+      preview();
+    }
+  }
+);
+
+
+/* =========================================================
+   TYPING
+   ========================================================= */
+
+input.addEventListener(
+  "input",
+  ()=>{
+
+    if(!running)return;
+
+    const typed=
+      input.value;
+
+    wrong=0;
+
+    for(
+      let i=0;
+      i<typed.length;
+      i++
+    ){
+
+      if(
+        typed[i]!==text[i]
+      ){
+        wrong++;
+      }
+
+    }
+
+
+    const position=
+      Math.min(
+        typed.length,
+        Math.max(0,text.length-1)
+      );
+
+    showTarget(position);
+
+    updateStats();
+
+
+    if(
+      typed.length>=text.length
+    ){
+
+      finishTest();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   WRONG KEY MESSAGE
+   ========================================================= */
+
+input.addEventListener(
+  "keydown",
+  event=>{
+
+    if(!running)return;
+
+    const expected=
+      text[input.value.length];
+
+    if(!expected)return;
+
+
+    if(event.key.length===1){
+
+      const mapped=
+        KEYMAP[expected];
+
+      if(
+        expected!==" " &&
+        mapped &&
+        !mapped.startsWith("Shift+")
+      ){
+
+        if(
+          event.key.toLowerCase()!==
+          mapped.toLowerCase()
+        ){
+
+          message.className=
+            "message bad";
+
+          message.textContent=
+            `❌ अगली key: ${expected} → ${mapped}`;
+
+        }
+
+      }
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   INITIAL LOAD
+   ========================================================= */
+
+preview();
+
+</script>
+
+</body>
+</html>
